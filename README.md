@@ -1,1 +1,2 @@
-## React Projects Starter APP
+## Tours
+A simple react application that displays various tour packages.
