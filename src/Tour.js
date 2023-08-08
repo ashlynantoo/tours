@@ -1,25 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const Tour = (props) => {
   const { id, name, info, image, price, removeTour } = props;
   const [isReadMore, setIsReadMore] = useState(true);
 
-  // useEffect(() => {
-  //   // info.length > 200 ? setIsReadMore(true) : setIsReadMore(false);
-  // }, []);
-
-  function handleReadMore() {
-    setIsReadMore(false);
-  }
-
   return (
     <article className="single-tour">
-      <img src={image} alt={name} />
-      <footer>
-        <div className="tour-info">
-          <h4>{name}</h4>
-          <h4 className="tour-price">${price}</h4>
-        </div>
+      <img src={image} alt={name} className="img" />
+      <span className="tour-price">${price}</span>
+      <div className="tour-info">
+        <h4>{name}</h4>
         <p>
           {isReadMore ? info.substring(0, 200) + "..." : info}
           <button
@@ -38,7 +28,7 @@ const Tour = (props) => {
         >
           Not Interested
         </button>
-      </footer>
+      </div>
     </article>
   );
 };

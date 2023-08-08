@@ -5,25 +5,21 @@ Variables
 */
 
 :root {
-  /* dark shades of primary color*/
   --clr-primary-1: hsl(205, 86%, 17%);
   --clr-primary-2: hsl(205, 77%, 27%);
   --clr-primary-3: hsl(205, 72%, 37%);
   --clr-primary-4: hsl(205, 63%, 48%);
-  /* primary/main color */
   --clr-primary-5: hsl(205, 78%, 60%);
-  /* lighter shades of primary color */
   --clr-primary-6: hsl(205, 89%, 70%);
   --clr-primary-7: hsl(205, 90%, 76%);
   --clr-primary-8: hsl(205, 86%, 81%);
   --clr-primary-9: hsl(205, 90%, 88%);
   --clr-primary-10: hsl(205, 100%, 96%);
-  /* darkest grey - used for headings */
+  /* grey */
   --clr-grey-1: hsl(209, 61%, 16%);
   --clr-grey-2: hsl(211, 39%, 23%);
   --clr-grey-3: hsl(209, 34%, 30%);
   --clr-grey-4: hsl(209, 28%, 39%);
-  /* grey used for paragraphs */
   --clr-grey-5: hsl(210, 22%, 49%);
   --clr-grey-6: hsl(209, 23%, 60%);
   --clr-grey-7: hsl(211, 27%, 70%);
@@ -31,19 +27,21 @@ Variables
   --clr-grey-9: hsl(212, 33%, 89%);
   --clr-grey-10: hsl(210, 36%, 96%);
   --clr-white: #fff;
-  --clr-red-dark: hsl(360, 67%, 44%);
-  --clr-red-light: hsl(360, 71%, 66%);
-  --clr-green-dark: hsl(125, 67%, 44%);
-  --clr-green-light: hsl(125, 71%, 66%);
   --clr-black: #222;
   --transition: all 0.3s linear;
   --spacing: 0.1rem;
   --radius: 0.25rem;
-  --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  --max-width: 1170px;
-  --fixed-width: 620px;
+  --max-width: 1440px;
+  --fixed-width: 600px;
+  --shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-3: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-4: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
+
 /*
 =============== 
 Global Styles
@@ -61,10 +59,10 @@ Global Styles
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  background: var(--clr-grey-10);
+  background-color: var(--clr-grey-10);
   color: var(--clr-grey-1);
   line-height: 1.5;
-  font-size: 0.875rem;
+  font-size: 1rem;
 }
 
 h1,
@@ -85,7 +83,7 @@ h2 {
 }
 
 h4 {
-  font-size: 0.875rem;
+  font-size: 1.2rem;
 }
 
 p {
@@ -101,32 +99,16 @@ p {
   h2 {
     font-size: 2.5rem;
   }
-
-  h4 {
-    font-size: 1rem;
-  }
-
-  body {
-    font-size: 1rem;
-  }
-
-  h1,
-  h2,
-  h4 {
-    line-height: 1;
-  }
 }
 
 main {
   width: 90vw;
-  max-width: var(--fixed-width);
-  margin: 5rem auto;
+  max-width: var(--max-width);
+  margin: 4rem auto;
 }
 
-/*  global classes */
-
 .btn {
-  background: var(--clr-primary-5);
+  background-color: var(--clr-primary-5);
   display: inline-block;
   padding: 0.25rem 0.5rem;
   border-radius: var(--radius);
@@ -139,35 +121,78 @@ main {
   font-size: 1rem;
 }
 
+.btn:hover {
+  background-color: var(--clr-primary-3);
+}
+
+.loading-window {
+  height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .loading {
-  text-align: center;
+  width: 5rem;
+  height: 5rem;
+  border: 10px solid var(--clr-grey-7);
+  border-radius: 50%;
+  border-top-color: var(--clr-primary-5);
+  animation: spinner 0.7s linear infinite;
 }
 
 .title {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .underline {
   width: 7rem;
   height: 0.25rem;
-  background: var(--clr-primary-5);
+  background-color: var(--clr-primary-5);
   margin-left: auto;
   margin-right: auto;
 }
 
+.tours {
+  display: grid;
+  gap: 2rem;
+}
+
+@media screen and (min-width: 768px) {
+  .tours {
+    grid-template-columns: 1fr 1fr;
+    /* fix stretch */
+    align-items: start;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .tours {
+    grid-template-columns: 1fr 1fr 1fr;
+    /* fix stretch */
+    align-items: start;
+  }
+}
+
 .single-tour {
-  background: var(--clr-white);
+  background-color: var(--clr-white);
   border-radius: var(--radius);
-  margin: 2rem 0;
-  box-shadow: var(--light-shadow);
+  box-shadow: var(--shadow-1);
+  transition: var(--transition);
+  position: relative;
 }
 
 .single-tour:hover {
-  box-shadow: var(--dark-shadow);
+  box-shadow: var(--shadow-3);
 }
 
-.single-tour img {
+.single-tour .img {
   width: 100%;
   height: 20rem;
   object-fit: cover;
@@ -175,46 +200,53 @@ main {
   border-top-left-radius: var(--radius);
 }
 
-.single-tour footer {
-  padding: 1.5rem 2rem;
+.tour-price {
+  color: var(--clr-primary-5);
+  background-color: var(--clr-primary-10);
+  border-top-right-radius: var(--radius);
+  letter-spacing: var(--spacing);
+  padding: 0.5rem;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .tour-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  text-align: center;
 }
 
 .tour-info h4 {
-  margin-bottom: 0;
+  margin-bottom: 1rem;
 }
 
-.tour-price {
-  color: var(--clr-primary-5);
-  background: var(--clr-primary-10);
-  padding: 0.25rem 0.5rem;
-  border-radius: var(--radius);
+.tour-info p {
+  text-align: justify;
 }
 
 .single-tour button {
-  background: transparent;
+  background-color: transparent;
   border-color: transparent;
   text-transform: capitalize;
   color: var(--clr-primary-5);
-  font-size: 1rem;
+  font-size: 0.925rem;
   cursor: pointer;
   padding-left: 0.25rem;
 }
 
 .single-tour .delete-btn {
-  display: block;
+  display: inline-block;
   width: 150px;
-  margin: 1rem auto 0 auto;
-  color: var(--clr-red-dark);
+  color: var(--clr-primary-5);
   letter-spacing: var(--spacing);
-  background: transparent;
-  border: 1px solid var(--clr-red-dark);
+  background-color: transparent;
+  border: 1px solid var(--clr-primary-5);
   padding: 0.25rem 0.75rem;
   border-radius: var(--radius);
+  font-size: 1rem;
+}
+
+.single-tour .delete-btn:hover {
+  background-color: var(--clr-primary-5);
+  color: var(--clr-white);
 }
