@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Loading from "./Loading";
 import Tours from "./Tours";
 
-const url = "https://projects-api-server.onrender.com/tours";
+const url = "https://www.course-api.com/react-tours-project";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
